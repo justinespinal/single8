@@ -1,33 +1,65 @@
+"use client";
+
 import AcmeLogo from '@/app/ui/acme-logo';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
+  const [loading, setLoading] = useState(true)
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 3000)
+
+    return () => clearTimeout(timer);
+  }, []);
+  
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    element?.scrollIntoView({ behavior: "smooth"});
+  };
+
+
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        {/* <AcmeLogo /> */}
+    <div className="">
+      {/* Nav bar */}
+      <div className="bg-gradient-to-b from-[#ec5c2c] to-[#ff9414] min-w-full flex flex-row gap-10 justify-center sticky top-0 text-white font-bold">
+        <button onClick={() => scrollToSection("home")}>Home</button>
+        <button onClick={() => scrollToSection("trailer")}>Trailer</button>
+        <button onClick={() => scrollToSection("cast")}>Cast</button>
+        <button onClick={() => scrollToSection("theater")}>Theater</button>
+        <h1>Test</h1>
+        <h2>Test</h2>
       </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
-          </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
-          >
-            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
-        </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
+    
+      {/* Banner */}
+      <div id="home" className="min-h-[100vh] bg-[#e8dccc] flex flex-col justify-center items-center">
+        <h1 className='font-bold text-9xl pt-4'>Single8</h1>
+        <Image
+          src="/single8-logo.png"
+          className=""
+          alt="single8 logo"
+          width={475}
+          height={475}
+        />
+        <h2 className='font-bold'>Yu Uemura, Akari Takaishi, Nozomi Fukuzawa (WATWING), Ryuta Kuwayama (WATWING), TakujiKawakubo , Ryuuki Kitaoka, Yusuke Sato (lol), Narimi Arimori</h2>
+        <h2 className='font-bold'>Director and scriptwriter: Kazuya Konaka</h2>
+      </div>
+
+      {/* Trailer */}
+      <div id="trailer" className='min-h-[100vh] bg-[#ff9414]'>
+        <h1 className="text-white text-6xl font-bold text-center pt-4">Trailer</h1>
+        <div className="flex flex-col justify-center items-center pt-6">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/lkAU8t3r1NA?si=j3cD_it15-WPh-Ia" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin"></iframe>
         </div>
       </div>
-    </main>
+
+      {/* Cast */}
+      <div id="cast" className='min-h-screen bg-[#080404]'>
+        <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4'>Cast</h1>
+      </div>
+    </div>
   );
 }
