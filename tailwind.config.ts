@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'cast-bg': "url('/cast-background.gif')"
+        'cast-bg': "url('/cast-background.gif')",
+        'banner-bg': "url('/banner-bg.jpg')"
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',

@@ -160,7 +160,7 @@ export default function Page() {
   return (
     <div>
       {/* Nav bar */}
-      <div className="bg-gradient-to-b from-[#ec5c2c] to-[#ff9414] min-w-full flex flex-row gap-10 justify-center sticky top-0 text-white font-bold">
+      <div className="bg-gradient-to-b from-[#ec5c2c] to-[#ff9414] min-w-full flex flex-row gap-10 justify-center sticky top-0 z-30 text-white font-bold">
         <button onClick={() => scrollToSection("home")}>Home</button>
         <button onClick={() => scrollToSection("trailer")}>Trailer</button>
         <button onClick={() => scrollToSection("cast")}>Cast</button>
@@ -168,17 +168,7 @@ export default function Page() {
       </div>
     
       {/* Banner */}
-      <div id="home" className="min-h-[100vh] bg-[#e8dccc] flex flex-col justify-center items-center">
-        <h1 className='font-bold text-9xl pt-4'>Single8</h1>
-        <Image
-          src="/single8-logo.png"
-          className=""
-          alt="single8 logo"
-          width={475}
-          height={475}
-        />
-        <h2 className='font-bold'>Yu Uemura, Akari Takaishi, Nozomi Fukuzawa (WATWING), Ryuta Kuwayama (WATWING), TakujiKawakubo , Ryuuki Kitaoka, Yusuke Sato (lol), Narimi Arimori</h2>
-        <h2 className='font-bold'>Director and scriptwriter: Kazuya Konaka</h2>
+      <div id="home" className="min-h-[100vh] bg-banner-bg bg-cover flex flex-col justify-center items-center">
       </div>
 
       {/* Trailer */}
@@ -189,36 +179,39 @@ export default function Page() {
       </div>
 
       {/* Cast */}
-      <div id="cast" className='min-h-screen bg-cast-bg bg-cover flex flex-col items-center gap-11'>
-        <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4'>Cast</h1>
-        <div className="text-white flex flex-col">
-          <div className='flex flex-row gap-10 justify-center'>
-            {cast.map((actor) => (
-              <button onClick={() => changeActor(actor.id)} key={actor.id}>
-                <Image
-                  src={actor.image+".png"}
-                  width={100}
-                  height={100}
-                  alt={actor.character}
-                />
-              </button>
-            ))}
-          </div>
-          <div className="p-20">
-            <div className="flex justify-between font-bold text-4xl">
-              <h1>Actor</h1>
-              <h1>Character</h1>
+      <div id="cast" className='relative min-h-screen bg-cast-bg bg-cover flex flex-col items-center gap-11'>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className='relative z-10'>
+          <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4 pb-6'>Cast</h1>
+          <div className="text-white flex flex-col">
+            <div className='flex flex-row gap-10 justify-center'>
+              {cast.map((actor) => (
+                <button onClick={() => changeActor(actor.id)} key={actor.id}>
+                  <Image
+                    src={actor.image+".png"}
+                    width={100}
+                    height={100}
+                    alt={actor.character}
+                  />
+                </button>
+              ))}
             </div>
-            <div className="flex justify-between text-2xl">
-              <h1>{currentActor.actor}</h1>
-              <h1>{currentActor.character}</h1>
+            <div className="p-20">
+              <div className="flex justify-between font-bold text-4xl">
+                <h1>Actor</h1>
+                <h1>Character</h1>
+              </div>
+              <div className="flex justify-between text-2xl">
+                <h1>{currentActor.actor}</h1>
+                <h1>{currentActor.character}</h1>
+              </div>
+              <hr className='dashed'/>
+              <span className='text-2xl'>
+                {currentActor.description}
+              </span>
             </div>
-            <hr className='dashed'/>
-            <span className='text-2xl'>
-              {currentActor.description}
-            </span>
           </div>
-        </div>
+       </div>
       </div>
 
       {/* Theater */}
