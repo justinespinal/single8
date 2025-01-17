@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'cast-bg': "url('/cast-background.gif')",
-        'banner-bg': "url('/banner-bg.jpg')"
+        'banner-bg': "url('/updated_website_ver.jpg')"
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',

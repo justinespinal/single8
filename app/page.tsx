@@ -1,64 +1,64 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FAQQuestion } from './ui/FAQQuestion';
 
+
 export default function Page() {
-  const [loading, setLoading] = useState(true)
 
   const cast = [
     {
-      image: "/placeholder",
+      image: "/guy1",
       actor: "Yu Uemura",
       character: "Hiroshi",
       description: "Born on November 2, 2002, in Kagoshima Prefecture. Won the Sponichi Grand Prix Newcomer Award at the 75th Mainichi Film Awards for his role in the film Forgiven Children (2020/directed by Eisuke Naito). His major appearances include Goodbye, Band Apartment (22/directed by Keiji Miyano), From a World Without Sky (22/directed by Kazuyoshi Ozawa), The Girl Inside Me (22/directed by Mayu Nakamura), the film Omi Shojin, Run! (22/directed by Ryuichi Mino), and the TV drama First Penguin! (Nippon TV).",
       id: 0
     },
     {
-      image: "/placeholder",
+      image: "/girl1",
       actor: "Akari Takaishi",
       character: "Natsumi",
       description: "Born December 19, 2002, from Miyazaki Prefecture. Her first starring role in the film 'Baby Warukyure' (directed by Yugo Sakamoto) in 2021 was a huge hit and became a hot topic. Her major film appearances include 'A Certain Janitor' (21/directed by Yugo Sakamoto), 'Goodbye, Band Apartment' (21/directed by Keiji Miyano), 'The Distant Future' (22/directed by Takayuki Ohashi), 'Happy Endings' (22/directed by Kohei Inoue and Akira Osaki), 'Reminiscence Journey' (22/directed by Kenji Tani), and 'The Detective of the End' (22/directed by Kotaro Igawa). Upcoming films include 'My Happy Marriage' (directed by Ayuko Tsukahara), which will be released on March 17, 2023, and 'Baby Warukyure 2 Baby' (directed by Yugo Sakamoto), which will be released on March 24.",
       id: 1
     },
     {
-      image: "/placeholder",
+      image: "/guy2",
       actor: "Fukuzawa Kiku",
       character: "Yoshio",
       description: "Born on February 22, 2004 in Aichi Prefecture. A member of Horipro's first male dance and vocal group, 'WATWING.' In parallel with his group activities, he has also appeared in the musical '17 Again' (21/directed by Junpei Yukimitsu) and the hugely popular stage production 'Jujutsu Kaisen' (22/directed by Kensaku Kobayashi) as Junpei Yoshino, making him a unique and distinctive performer on stage.",
       id: 2
     },
     {
-      image: "/placeholder",
+      image: "/guy3",
       actor: "Ryuta Kuwayama",
       character: "Sasaki",
       description: "Born January 27, 2004 in Tokyo. Member of Horipro's first male dance and vocal group 'WATWING'. He is also active as an actor, appearing in the main role of Yanagida in AbemaTV's 'Kyou, Suki ni Narimashita. ~Aoi Haru Hen~' and Nippon Television's 'ZIP! Morning Drama' 'Crescendo de Susume' in October.",
       id: 3
     },
     {
-      image: "/placeholder",
+      image: "/guy4",
       actor: "Takuji Kawakubo",
       character: "Professor Maruyama",
       description: "Born December 17, 1981 in Tokyo. Played the main character, Komon Kazuki, in 'Ultraman Nexus' (2004). Major appearances include the TV drama 'Yoshihiko the Brave Series' (TV Tokyo), the first installment 'Yoshihiko the Brave and the Demon King's Castle' (2011), the third installment 'Yoshihiko the Brave and the Seven Chosen Ones' (2016), the stage plays 'Piaf' (2018/directed by Kuriyama Tamiya) and 'Boys in the Band: Midnight Party' (2020/directed by Shirai Akira), among many others.",
       id: 4
     },
     {
-      image: "/placeholder",
+      image: "/guy5",
       actor: "Takayuki Kitaoka",
       character: "Curry Shop Owner",
       description: "Born October 5, 1971, in Tochigi Prefecture. He has appeared in many works directed by Konaka Kazuya, including the TV drama Ultraman Nexus' (2004), the film 'Nanase Futatabii' (2010), and 'VAMP' (2019). Other notable works include 'Kingdom' (2019/directed by Sato Shinsuke) and 'Nobutora' (2021/directed by Kaneko Shusuke and Miyashita Genpa). He has also worked on many overseas films, including American, Hong Kong, Chinese, Filipino, Taiwanese, and Spanish films.",
       id: 5
     },
     {
-      image: "/placeholder",
+      image: "/guy6",
       actor: "Yusuke Sato",
       character: "Camera shop clerk Terao",
       description: "Born June 11, 1996 in Hokkaido. A member of the mixed-gender dance and vocal group lol. This is his second appearance in a film directed by Konaka, following his previous film, 'The Country Beyond the Stars' (21). He has also starred in the drama 'Misfortune Has No Choice But to Kiss!' (MBS). In addition to his work as an artist, he is also active in many areas as an actor and model.",
       id: 6
     },
     {
-      image: "/placeholder",
+      image: "/girl2",
       actor: "Narimi Arimori",
       character: "Hiroshi's mother",
       description: "Born December 10, 1967, in Kanagawa Prefecture. In 1986, she made her debut in the commercial film 'The Country Beyond the Starry Sky,' directed by Kazuya Konaka. In the same year, she played the heroine in the film 'Cinema no Tenchi' (directed by Yoji Yamada), for which she won the Newcomer Award at the 29th Blue Ribbon Awards and the Newcomer Actor Award at the 10th Japan Academy Awards. Since then, she has appeared in many dramas, stage plays, and films, including 'Tokyo Love Story' (CX) and the stage play 'Horobiki.' Recent works include the stage play 'Keshou Ni Tai' (2019, 21/directed by Hitoshi Uyama), 'Hula Girls - Dance for Smile-' (general director Shunsaku Kawage, composition and direction by Shunichi Okamura), and the films 'Inu Mukoiri' (2019/directed by Kazutaka Katashima), 'The Country Beyond the Starry Sky' (21/directed by Kazuya Konaka), and 'Tenjo no Hana' (22/directed by Kazutaka Katashima). Upcoming performances include the stage play 'A Story of Yaeko' from January to April and again from November to December, as well as the two-person play 'Hanashi no Hanashi' in June.",
@@ -72,12 +72,6 @@ export default function Page() {
     console.log(characterId)
     setCurrentCharacter(cast[characterId])
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000)
-
-    return () => clearTimeout(timer);
-  }, []);
   
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -173,9 +167,10 @@ export default function Page() {
 
       {/* Trailer */}
       <div id="trailer" className='min-h-[100vh] bg-[#ff9414]'>
-        <h1 className="text-white text-6xl font-bold text-center pt-4 delay-[300ms] duration-[600ms] taos:translate-y-[100%] taos:opacity-0" data-taos-offset="300">Trailer</h1>
-        <div className="flex flex-col justify-center items-center pt-6">
-        <iframe width="1120" height="630" src="https://www.youtube.com/embed/BQkOqbbSKGI?si=qmVFlXiaHv7GkI0J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>        </div>
+        <h1 className="block-animate text-white text-6xl font-bold text-center pt-4 delay-[300ms] duration-[600ms] taos:translate-y-[100%] taos:opacity-0" data-taos-offset="300">Trailer</h1>
+        <div className="block-animate flex flex-col justify-center items-center pt-6">
+          <iframe width="1120" height="630" src="https://www.youtube.com/embed/BQkOqbbSKGI?si=qmVFlXiaHv7GkI0J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>        
+        </div>
       </div>
 
       {/* Cast */}
@@ -189,9 +184,10 @@ export default function Page() {
                 <button onClick={() => changeActor(actor.id)} key={actor.id}>
                   <Image
                     src={actor.image+".png"}
-                    width={100}
-                    height={100}
+                    width={150}
+                    height={150}
                     alt={actor.character}
+                    className='rounded-full hover:scale-110 transition-transform'
                   />
                 </button>
               ))}
