@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FAQQuestion } from './ui/FAQQuestion';
 
 
@@ -151,24 +151,52 @@ export default function Page() {
     },
   ]
 
+  const useIsVisible = (ref: any) => {
+    const [isIntersecting, setIntersecting] = useState(false);
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(([entry]) => {
+          setIntersecting(entry.isIntersecting)
+      } 
+      );
+      
+      observer.observe(ref.current);
+      return () => {
+        observer.disconnect();
+      };
+    }, [ref]);
+  
+    return isIntersecting;
+  }
+  
+  const ref1 = useRef(false);
+  const isVisible1 = useIsVisible(ref1);
+  const ref2 = useRef(false);
+  const isVisible2 = useIsVisible(ref2);
+  const ref3 = useRef(false);
+  const isVisible3 = useIsVisible(ref3);
+  const ref4 = useRef(false)
+  const isVisible4 = useIsVisible(ref4)
+
   return (
     <div>
       {/* Nav bar */}
-      <div className="bg-gradient-to-b from-[#ec5c2c] to-[#ff9414] min-w-full flex flex-row gap-10 justify-center sticky top-0 z-30 text-white font-bold">
+      <div className="bg-gradient-to-b from-[#ec5c2c] to-[#ff9414] min-w-full flex flex-row gap-10 justify-center sticky top-0 z-30 text-white font-bold h-[2em]">
         <button onClick={() => scrollToSection("home")}>Home</button>
         <button onClick={() => scrollToSection("trailer")}>Trailer</button>
         <button onClick={() => scrollToSection("cast")}>Cast</button>
         <button onClick={() => scrollToSection("theater")}>Theater</button>
+        <a className='p-1' href="https://www.tumblr.com/single8movie">News</a>
       </div>
     
       {/* Banner */}
-      <div id="home" className="min-h-[100vh] bg-banner-bg bg-cover flex flex-col justify-center items-center">
+      <div id="home" className="min-h-[100vh] bg-banner-bg bg-cover flex flex-col justify-center items-center z-0">
       </div>
 
       {/* Trailer */}
       <div id="trailer" className='min-h-[100vh] bg-[#ff9414]'>
-        <h1 className="block-animate text-white text-6xl font-bold text-center pt-4 delay-[300ms] duration-[600ms] taos:translate-y-[100%] taos:opacity-0" data-taos-offset="300">Trailer</h1>
-        <div className="block-animate flex flex-col justify-center items-center pt-6">
+        <h1 ref={ref1} className={`text-white text-6xl font-bold text-center pt-4 transition-opacity ease-in duration-700 ${isVisible1 ? "opacity-100" : "opacity-0"}`}>Trailer</h1>
+        <div ref={ref2} className={`flex flex-col justify-center items-center pt-6 transition-opacity ease-in duration-700 ${isVisible2 ? "opacity-100" : "opacity-0"}`}>
           <iframe width="1120" height="630" src="https://www.youtube.com/embed/BQkOqbbSKGI?si=qmVFlXiaHv7GkI0J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>        
         </div>
       </div>
@@ -176,7 +204,7 @@ export default function Page() {
       {/* Cast */}
       <div id="cast" className='relative min-h-screen bg-cast-bg bg-cover flex flex-col items-center gap-11'>
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className='relative z-10'>
+        <div ref = {ref3} className={`relative z-10 transition-opacity ease-in duration-700 ${isVisible3 ? "opacity-100" : "opacity-0"}`}>
           <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4 pb-6'>Cast</h1>
           <div className="text-white flex flex-col">
             <div className='flex flex-row gap-10 justify-center'>
@@ -212,28 +240,29 @@ export default function Page() {
 
       {/* Theater */}
       <div id="theater" className='min-h-screen bg-white flex flex-col gap-10'>
-        <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4'>
-          Theater
-        </h1>
-        <div className='flex justify-center items-center mt-5'>
-          <div className='flex items-center w-[50vw] p-10 gap-5 border-2 shadow-lg rounded'>
-            <h1 className='text-2xl text-[#ec5c2c] font-bold'>Find the closest theater near you to watch Single8!</h1>
-            <Image
-              src="/single8-theater.jpg"
-              height={300}
-              width={300}
-              alt="single8-ticket"
-            />
+        <div ref={ref4} className={`transition-opacity ease-in duration-700 ${isVisible4 ? "opacity-100" : "opacity-0"}`}>
+          <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4'>
+            Theater
+          </h1>
+          <div className='flex justify-center items-center mt-5 mb-5'>
+            <div className='flex items-center w-[50vw] p-10 gap-5 border-2 shadow-lg rounded'>
+              <h1 className='text-2xl text-[#ec5c2c] font-bold'>Find the closest theater near you to watch Single8!</h1>
+              <Image
+                src="/single8-theater.jpg"
+                height={300}
+                width={300}
+                alt="single8-ticket"
+              />
+            </div>
+          </div>
+          <div className='flex flex-col gap-5 items-center justify-center pb-10'>
+            <FAQQuestion question="Manhattan" answer={theaters[0]}/>
+            <FAQQuestion question="Brookyln" answer={theaters[0]}/>
+            <FAQQuestion question="Queens" answer={theaters[0]}/>
+            <FAQQuestion question="Bronx" answer={theaters[0]}/>
+            <FAQQuestion question="Staten Island" answer={theaters[0]}/>
           </div>
         </div>
-        <div className='flex flex-col gap-5 items-center justify-center pb-10'>
-          <FAQQuestion question="Manhattan" answer={theaters[0]}/>
-          <FAQQuestion question="Brookyln" answer={theaters[0]}/>
-          <FAQQuestion question="Queens" answer={theaters[0]}/>
-          <FAQQuestion question="Bronx" answer={theaters[0]}/>
-          <FAQQuestion question="Staten Island" answer={theaters[0]}/>
-        </div>
-
       </div>
 
     </div>
