@@ -1,12 +1,40 @@
 "use client";
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { FAQQuestion } from './ui/FAQQuestion';
 import * as motion from "motion/react-client"
-
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 export default function Page() {
+
+  const responsive = {
+    desktop: {
+      breakpoint: {
+        max: 3000,
+        min: 1024
+      },
+      items: 3,
+      partialVisibilityGutter: 40
+    },
+    mobile: {
+      breakpoint: {
+        max: 464,
+        min: 0
+      },
+      items: 1,
+      partialVisibilityGutter: 30
+    },
+    tablet: {
+      breakpoint: {
+        max: 1024,
+        min: 464
+      },
+      items: 2,
+      partialVisibilityGutter: 30
+    }
+  }
 
   const cast = [
     {
@@ -174,6 +202,96 @@ export default function Page() {
           <iframe width="1120" height="630" src="https://www.youtube.com/embed/BQkOqbbSKGI?si=qmVFlXiaHv7GkI0J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>        
         </motion.div>
       </div>
+
+      <Carousel
+        additionalTransfrom={0}
+        arrows
+        autoPlaySpeed={3000}
+        centerMode={false}
+        className=""
+        containerClass="container-with-dots"
+        dotListClass=""
+        draggable
+        focusOnSelect={false}
+        infinite
+        itemClass=""
+        keyBoardControl
+        minimumTouchDrag={80}
+        pauseOnHover
+        renderArrowsWhenDisabled={false}
+        renderButtonGroupOutside={false}
+        renderDotsOutside={false}
+        responsive={responsive}
+        rewind={false}
+        rewindWithAnimation={false}
+        rtl={false}
+        shouldResetAutoplay
+        showDots={false}
+        sliderClass=""
+        slidesToSlide={1}
+        swipeable
+        >
+          <Image
+            src="/image1.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image2.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image3.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image4.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image5.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image6.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image7.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image8.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image9.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+          <Image
+            src="/image10.png"
+            width={600}
+            height={600}
+            alt="image 1"
+          />
+        </Carousel>
 
       {/* Cast */}
       <div id="cast" className='relative min-h-screen bg-cast-bg bg-cover flex flex-col items-center gap-11'>
