@@ -169,13 +169,13 @@ export default function Page() {
     return isIntersecting;
   }
   
-  const ref1 = useRef(false);
+  const ref1 = useRef<HTMLHeadingElement | null>(null);
   const isVisible1 = useIsVisible(ref1);
-  const ref2 = useRef(false);
+  const ref2 = useRef<HTMLHeadingElement | null>(null);
   const isVisible2 = useIsVisible(ref2);
-  const ref3 = useRef(false);
+  const ref3 = useRef<HTMLHeadingElement | null>(null);
   const isVisible3 = useIsVisible(ref3);
-  const ref4 = useRef(false)
+  const ref4 = useRef<HTMLHeadingElement | null>(null)
   const isVisible4 = useIsVisible(ref4)
 
   return (
