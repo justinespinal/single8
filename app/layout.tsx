@@ -4,7 +4,8 @@ import "@/app/ui/global.css"
 import SplashScreen from "./ui/SplashScreen";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import { AnimatePresence } from "motion/react"
+import * as motion from "motion/react-client"
 
 export default function RootLayout({
   children,
@@ -25,12 +26,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      { isLoading && isHome ? 
-      (<SplashScreen finishLoading={() => setIsLoading(false)}/>) : 
-        (
-          <>{children}</>
-        )
-      }
+        <div className="bg-orange-400 h-screen">
+          { isLoading && isHome ? 
+          (<SplashScreen finishLoading={() => setIsLoading(false)}/>) : 
+            (
+              <motion.div
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{duration: 2}}
+              >
+                {children}
+              </motion.div>
+            )
+          }
+        </div>
       </body>
     </html>
   );

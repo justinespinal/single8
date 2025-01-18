@@ -20,7 +20,7 @@ export default function SplashScreen({finishLoading}:{finishLoading: any}) {
                 duration: 1000,
                 rotate: {
                     value: 720,
-                    duration: 1800,
+                    duration: 2000,
                     easing: 'easeInOutSine'
                 },
             })

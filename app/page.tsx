@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { FAQQuestion } from './ui/FAQQuestion';
+import * as motion from "motion/react-client"
 
 
 export default function Page() {
@@ -151,33 +152,6 @@ export default function Page() {
     },
   ]
 
-  const useIsVisible = (ref: any) => {
-    const [isIntersecting, setIntersecting] = useState(false);
-  
-    useEffect(() => {
-      const observer = new IntersectionObserver(([entry]) => {
-          setIntersecting(entry.isIntersecting)
-      } 
-      );
-      
-      observer.observe(ref.current);
-      return () => {
-        observer.disconnect();
-      };
-    }, [ref]);
-  
-    return isIntersecting;
-  }
-  
-  const ref1 = useRef<HTMLHeadingElement | null>(null);
-  const isVisible1 = useIsVisible(ref1);
-  const ref2 = useRef<HTMLHeadingElement | null>(null);
-  const isVisible2 = useIsVisible(ref2);
-  const ref3 = useRef<HTMLHeadingElement | null>(null);
-  const isVisible3 = useIsVisible(ref3);
-  const ref4 = useRef<HTMLHeadingElement | null>(null)
-  const isVisible4 = useIsVisible(ref4)
-
   return (
     <div>
       {/* Nav bar */}
@@ -195,16 +169,16 @@ export default function Page() {
 
       {/* Trailer */}
       <div id="trailer" className='min-h-[100vh] bg-[#ff9414]'>
-        <h1 ref={ref1} className={`text-white text-6xl font-bold text-center pt-4 transition-opacity ease-in duration-700 ${isVisible1 ? "opacity-100" : "opacity-0"}`}>Trailer</h1>
-        <div ref={ref2} className={`flex flex-col justify-center items-center pt-6 transition-opacity ease-in duration-700 ${isVisible2 ? "opacity-100" : "opacity-0"}`}>
+        <h1 className={`text-white text-6xl font-bold text-center pt-4 transition-opacity ease-in duration-700`}>Trailer</h1>
+        <motion.div className={`flex flex-col justify-center items-center pt-6 transition-opacity ease-in duration-700`} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{duration: 3}} viewport={{once: true}}>
           <iframe width="1120" height="630" src="https://www.youtube.com/embed/BQkOqbbSKGI?si=qmVFlXiaHv7GkI0J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>        
-        </div>
+        </motion.div>
       </div>
 
       {/* Cast */}
       <div id="cast" className='relative min-h-screen bg-cast-bg bg-cover flex flex-col items-center gap-11'>
         <div className="absolute inset-0 bg-black/50"></div>
-        <div ref = {ref3} className={`relative z-10 transition-opacity ease-in duration-700 ${isVisible3 ? "opacity-100" : "opacity-0"}`}>
+        <motion.div className={`relative z-10 transition-opacity ease-in duration-700`} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{duration: 3}} viewport={{once: true}}>
           <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4 pb-6'>Cast</h1>
           <div className="text-white flex flex-col">
             <div className='flex flex-row gap-10 justify-center'>
@@ -215,7 +189,7 @@ export default function Page() {
                     width={150}
                     height={150}
                     alt={actor.character}
-                    className='rounded-full hover:scale-110 transition-transform'
+                    className={`rounded-full hover:scale-110 transition-all border-[#ff9414] ${actor.id === currentActor.id ? "border-4 scale-110" : ""}`}
                   />
                 </button>
               ))}
@@ -235,12 +209,12 @@ export default function Page() {
               </span>
             </div>
           </div>
-       </div>
+       </motion.div>
       </div>
 
       {/* Theater */}
       <div id="theater" className='min-h-screen bg-white flex flex-col gap-10'>
-        <div ref={ref4} className={`transition-opacity ease-in duration-700 ${isVisible4 ? "opacity-100" : "opacity-0"}`}>
+        <motion.div className={`transition-opacity ease-in duration-700`} initial={{ opacity: 0.5, scale: 0.1 }} whileInView={{ opacity: 1, scale: 1 }} transition={{duration: 1}} viewport={{once: true}}>
           <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4'>
             Theater
           </h1>
@@ -262,7 +236,7 @@ export default function Page() {
             <FAQQuestion question="Bronx" answer={theaters[0]}/>
             <FAQQuestion question="Staten Island" answer={theaters[0]}/>
           </div>
-        </div>
+        </motion.div>
       </div>
 
     </div>
