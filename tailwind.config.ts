@@ -10,7 +10,8 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'cast-bg': "url('/cast-background.gif')",
-        'banner-bg': "url('/updated_website_ver.jpg')"
+        'banner-bg': "url('/updated_website_ver.jpg')",
+        'gradient-radial': 'radial-gradient(var(--gradient-color-stops))'
       },
       gridTemplateColumns: {
         '13': 'repeat(13, minmax(0, 1fr))',

@@ -6,6 +6,8 @@ import { FAQQuestion } from './ui/FAQQuestion';
 import * as motion from "motion/react-client"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 export default function Page() {
 
@@ -15,8 +17,8 @@ export default function Page() {
         max: 3000,
         min: 1024
       },
-      items: 3,
-      partialVisibilityGutter: 40
+      items: 4,
+      partialVisibilityGutter: 0
     },
     mobile: {
       breakpoint: {
@@ -24,7 +26,7 @@ export default function Page() {
         min: 0
       },
       items: 1,
-      partialVisibilityGutter: 30
+      partialVisibilityGutter: 0
     },
     tablet: {
       breakpoint: {
@@ -32,7 +34,7 @@ export default function Page() {
         min: 464
       },
       items: 2,
-      partialVisibilityGutter: 30
+      partialVisibilityGutter: 0
     }
   }
 
@@ -66,14 +68,14 @@ export default function Page() {
       id: 3
     },
     {
-      image: "/guy4",
+      image: "/guy5",
       actor: "Takuji Kawakubo",
       character: "Professor Maruyama",
       description: "Born December 17, 1981 in Tokyo. Played the main character, Komon Kazuki, in 'Ultraman Nexus' (2004). Major appearances include the TV drama 'Yoshihiko the Brave Series' (TV Tokyo), the first installment 'Yoshihiko the Brave and the Demon King's Castle' (2011), the third installment 'Yoshihiko the Brave and the Seven Chosen Ones' (2016), the stage plays 'Piaf' (2018/directed by Kuriyama Tamiya) and 'Boys in the Band: Midnight Party' (2020/directed by Shirai Akira), among many others.",
       id: 4
     },
     {
-      image: "/guy5",
+      image: "/guy4",
       actor: "Takayuki Kitaoka",
       character: "Curry Shop Owner",
       description: "Born October 5, 1971, in Tochigi Prefecture. He has appeared in many works directed by Konaka Kazuya, including the TV drama Ultraman Nexus' (2004), the film 'Nanase Futatabii' (2010), and 'VAMP' (2019). Other notable works include 'Kingdom' (2019/directed by Sato Shinsuke) and 'Nobutora' (2021/directed by Kaneko Shusuke and Miyashita Genpa). He has also worked on many overseas films, including American, Hong Kong, Chinese, Filipino, Taiwanese, and Spanish films.",
@@ -186,9 +188,11 @@ export default function Page() {
       <div className="bg-gradient-to-b from-[#ec5c2c] to-[#ff9414] min-w-full flex flex-row gap-10 justify-center sticky top-0 z-30 text-white font-bold h-[2em]">
         <button onClick={() => scrollToSection("home")}>Home</button>
         <button onClick={() => scrollToSection("trailer")}>Trailer</button>
+        <button onClick={() => scrollToSection("intro")}>Introduction</button>
         <button onClick={() => scrollToSection("cast")}>Cast</button>
         <button onClick={() => scrollToSection("theater")}>Theater</button>
         <a className='p-1' href="https://www.tumblr.com/single8movie">News</a>
+        <a className='p-1' href="https://x.com/movie_single8?mx=2"><FontAwesomeIcon icon={faTwitter} style={{color: "#ffffff",}} /></a>
       </div>
     
       {/* Banner */}
@@ -196,10 +200,10 @@ export default function Page() {
       </div>
 
       {/* Trailer */}
-      <div id="trailer" className='min-h-[100vh] bg-[#ff9414]'>
+      <div id="trailer" className='min-h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#ec5c2c] to-yellow-500'>
         <h1 className={`text-white text-6xl font-bold text-center pt-4 transition-opacity ease-in duration-700`}>Trailer</h1>
-        <motion.div className={`flex flex-col justify-center items-center pt-6 transition-opacity ease-in duration-700`} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{duration: 3}} viewport={{once: true}}>
-          <iframe width="1120" height="630" src="https://www.youtube.com/embed/BQkOqbbSKGI?si=qmVFlXiaHv7GkI0J" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>        
+        <motion.div className={`flex flex-col justify-center items-center pt-6 transition-opacity ease-in duration-700`} initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{duration: 1}} viewport={{once: true}}>
+          <iframe width="1120" height="630" src="https://www.youtube.com/embed/YFHQQdPsaU0?si=vUOR-aZXshNHUl3n" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>        
         </motion.div>
       </div>
 
@@ -209,15 +213,12 @@ export default function Page() {
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="container-with-dots"
-        dotListClass=""
         draggable
         focusOnSelect={false}
         infinite
         itemClass=""
         keyBoardControl
         minimumTouchDrag={80}
-        pauseOnHover
         renderArrowsWhenDisabled={false}
         renderButtonGroupOutside={false}
         renderDotsOutside={false}
@@ -233,70 +234,88 @@ export default function Page() {
         >
           <Image
             src="/image1.png"
-            width={600}
-            height={600}
+            width={400}
+            height={400}
             alt="image 1"
           />
           <Image
             src="/image2.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image3.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image4.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image5.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image6.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image7.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image8.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image9.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
           <Image
             src="/image10.png"
-            width={600}
-            height={600}
+            width={500}
+            height={500}
             alt="image 1"
           />
         </Carousel>
 
+      {/* Introduction */}
+      <div id="intro" className='h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-stone-900 to-orange-600'>
+        <motion.div initial={{ opacity: 0.5, scale: 0.1 }} whileInView={{ opacity: 1, scale: 1 }} transition={{duration: 1}} viewport={{once: true}}>
+          <h1 className='text-6xl font-bold text-white text-center p-5'>Introduction</h1>
+          <div className='flex flex-col justify-center items-center text-white pl-52 pr-52'>
+            <h1 className='text-center text-white font-bold text-4xl'>A 1970s coming of age film depicting young people passionate about filmmaking</h1>
+
+            <p className='pt-10'>Single 8 is a three-time award-winning film directed and produced by Kazuya Konaka, a renowned filmmaker known for his work on the Japanese Ultraman movie series. Set one year after the release of Star Wars in the United States (1978, in Japan), the film follows Hiroshi, a high school student played by Yuu Uemura, who is inspired to create his own sci-fi movie after watching Star Wars. Alongside his best friend Yoshio, portrayed by J-pop idol Noa Fukuzawa from the popular group WATWING, Hiroshi plans to make a sci-fi film for their school’s annual festival.</p>
+            
+            <p className='pt-10'>Despite his enthusiasm, Hiroshi struggles to develop a clear plot or character setup. With the help of Natsumi, the heroine of the film, played by Akari Takaishi, known for her role in the anime live-action series My Happy Marriage, and Sasaki, portrayed by fellow WATWING member Ryuta Kuwayama, they collaborate to create a movie about characters trapped in a world where everything is reversed.</p>
+            
+            <p className='pt-10'>The director is Kazuya Konaka, who has worked on the ever-popular Heisei Ultraman series, including the films "Ultraman Tiga, Ultraman Dyna & Ultraman Gaia: Battle in Hyperspace" (1999) and "Ultraman Mebius & Ultraman Brothers" (2006). Konaka has always wanted to make a film about his youth, when he was passionate about making 8mm films, which is where he started! This project has finally come to fruition. The protagonist Hiroshi, who is also the director's alter ego, is played by Yu Uemura, a rising star who won the Newcomer Award at the 75th Mainichi Film Awards and the Sponichi Grand Prix for his lead role in the film "Forgiven Children" (20). Hiroshi's friends Yoshio and Sasaki, who support him and work hard together, are played by Nozomi Fukuzawa and Ryuta Kuwayama, who are active in WATWING, Horipro's first male dance and vocal group. The role of Natsumi, the class Madonna who Hiroshi secretly has a crush on and who offers to play the heroine in the movie, is played by Akari Takaishi, who made waves in "Baby Warukyure" (21), along with a group of fresh young actors! Other unique faces with ties to the elementary and junior high school class include Takuji Kawakubo, Tatsuki Kitaoka, Yusuke Sato, and Narimi Arimori.</p>
+
+            <p className='pt-10'>This exquisite youth film will warm your heart and show you the preciousness of creating something from scratch with passion together with your friends!</p>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Cast */}
       <div id="cast" className='relative min-h-screen bg-cast-bg bg-cover flex flex-col items-center gap-11'>
         <div className="absolute inset-0 bg-black/50"></div>
-        <motion.div className={`relative z-10 transition-opacity ease-in duration-700`} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{duration: 3}} viewport={{once: true}}>
+        <motion.div className={`relative z-10 transition-opacity ease-in duration-700`} initial={{ opacity: 0.5, scale: 0.1 }} whileInView={{ opacity: 1, scale: 1 }} transition={{duration: 1}} viewport={{once: true}}>
           <h1 className='text-[#ec5c2c] text-6xl font-bold text-center pt-4 pb-6'>Cast</h1>
           <div className="text-white flex flex-col">
             <div className='flex flex-row gap-10 justify-center'>
